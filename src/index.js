@@ -1,21 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 // storeを作成するための関数（reduxライブラリからimport）
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 // 作成したstoreを全componentに渡すための関数
 import { Provider } from 'react-redux'
+import thunk from 'redux-thunk'
 
 import './index.css';
 import reducer from './reducers'
-
-import App from './components/App';
+import EventsIndex from './components/events_index';
 import reportWebVitals from './reportWebVitals';
 
-const store = createStore(reducer)
+const store = createStore(reducer, applyMiddleware(thunk))
 
 ReactDOM.render(
   <Provider store = {store}>
-    <App />
+    <EventsIndex />
   </Provider>,
   document.getElementById('root')
 );
